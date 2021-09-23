@@ -37,8 +37,7 @@ Jonathan Brock -> Code Reviews/Error debugging
 
 Mapping out:
 
-![WRRC (9-21-21)]
-(./img/david.png)
+![WRRC](img/david.png)
 
 ## LAB-07
 
