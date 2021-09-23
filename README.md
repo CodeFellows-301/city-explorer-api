@@ -1,33 +1,47 @@
 # City Explorer API
 
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Jacob Gregor
+**Version**: 1.0.1
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+
+BAck-End server handling the Weather API & Movie DataBase API for City-Explorer.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
+Checkout the Deployed site Below!
+https://city-explorer-jacob-gregor.netlify.app
+
+Checkout all the planning and mapping that went into this project below!
+https://trello.com/b/sgLCbZkt/city-explorer
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+
+This Utilized the following Tech:
+-> Node.js
+-> express
+-> nodemon
+-> Javascript
 
 ## Change Log
+
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+09-22-21 11:45pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped 
 
+Bryce Pfingston -> Code Reviews/Error debugging
+Anthony Morton -> Code Reviews/Error debugging
+Jonathan Brock -> Code Reviews/Error debugging
 
 Mapping out:
 
-/Users/jacobgregor/Code Fellows/CF-301/projects/city-explorer-api/img/Screen Shot 2021-09-21 at 13.37.21.png
+WRRC (9-21-21)
+[img/Screen Shot 2021-09-21 at 13.37.21.png]
 
+## LAB-07
 
-
-------------------------------------------------------------------------------------------------------------------------------------
 Name of feature: Create Repo
 
 Estimate of time needed to complete: 30
@@ -38,14 +52,62 @@ Finish time: 6:50
 
 Actual time needed to complete: 30 minutes.
 
-------------------------------------------------------------------------------------------------------------------------------------
+---
 
-Name of feature: Sever setup
+Name of feature: Sever setup (09.22.21)
 
 Estimate of time needed to complete: 1 hour
 
 Start time: 7:00pm
 
-Finish time: 
+Finish time: 11pm
 
-Actual time needed to complete: 
+Actual time needed to complete:
+
+---
+
+Name of feature: Weather Posting
+
+Estimate of time needed to complete: 4
+
+Start time: 4
+
+Finish time: 8
+
+Actual time needed to complete: a little over 4 hours.
+
+## LAB-08
+
+Name of feature: Weather (live)
+
+Estimate of time needed to complete:
+
+Start time:
+
+Finish time:
+
+Actual time needed to complete:
+
+---
+
+Name of feature: Movies
+
+Estimate of time needed to complete:
+
+Start time:
+
+Finish time:
+
+Actual time needed to complete:
+
+---
+
+Name of feature: Publish
+
+Estimate of time needed to complete: 1 Hour
+
+Start time: 11pm
+
+Finish time: 11:45
+
+Actual time needed to complete: 45 minutes.
