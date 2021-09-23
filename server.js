@@ -6,11 +6,26 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const weather = require('./data/weather.json');
-const { response } = require('express');
-
-
+console.log(weather)
 
 app.use(cors());
+
+class Forecast {
+  constructor(time,description) {
+    this.time = time,
+    this.description = description
+  } 
+ };
+
+function returnData(cityData){
+  let weatherReport = cityData.data.map((day) =>{
+    let time = day.datetime
+    let description = `Low of ${day.low_temp}, High of ${day.high_temp} with ${day.weather.description}`  
+    return new Forecast(time,description)
+  })
+    console.log(weatherReport)
+    return weatherReport;
+};
 
 
 
@@ -22,43 +37,25 @@ app.get('/weather', (request,response) => {
 
 
   let city = request.query.searchQuery
-  const lat = request.query.lat
-  const lon = request.query.lon
-  
+  let lat = request.query.lat
+  let lon = request.query.lon
   if(city){
     city = city.toLowerCase()
+
   }
   
 try {
-  const cityData = weather.find(citySearch => citySearch.city_name.toLowerCase() === city && citySearch.lat === lat && citySearch.lon === lon);
-
-  returnData(city)
+  let cityData = weather.find((citySearch) => 
+    citySearch.city_name.toLowerCase() === city &&
+    citySearch.lat === lat && 
+    citySearch.lon === lon);
+    // let weatherReport = cityData.data.map(day => new Forecast(day.datetime,day.weather.description))
   
-  response.send(returnArray)
+   response.send(returnData(cityData));
 
 } catch (error) {
-   response.send(400, `error not a city`)
+   response.status(500).send('error not a city')
  }
 });
-
-class Forecast {
- constructor(date,description) {
-   this.date = date,
-   this.description = description
- } 
-};
-  
-
-
-let returnArray = [];
-
-let returnData = (obj) => {
-  let date = obj.datetime
-  let description = `Low of ${obj.low_temp}, Hogh of ${obj.high_temp} with ${obj.description}`  
-  returnArray.push(new Forecast(date,description));
-};
-
-
-
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`))
