@@ -5,8 +5,9 @@ const express = require('express')
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const weather = require('./data/weather.json');
-console.log(weather)
+const axios = require('axios')
+// const weather = require('./data/weather.json');
+
 
 app.use(cors());
 
@@ -23,39 +24,31 @@ function returnData(cityData){
     let description = `Low of ${day.low_temp}, High of ${day.high_temp} with ${day.weather.description}`  
     return new Forecast(time,description)
   })
-    console.log(weatherReport)
     return weatherReport;
 };
 
 
 
 app.get('/', (request,response) => {
-  response.status(200).send('hello from the home route');
+  response.status(200).send('hello from the home route weather');
 });
 
-app.get('/weather', (request,response) => {
+app.get('/weather', weatherBitIoCall)
 
-
-  let city = request.query.searchQuery
+async function weatherBitIoCall(request,response){
   let lat = request.query.lat
   let lon = request.query.lon
-  if(city){
-    city = city.toLowerCase()
-
-  }
+  let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=68d592738bbe4b67a204ffce2d200937`
+  let weatherBitIoData = await axios.get(url)
+  console.log(weatherBitIoData.data)
+  response.send(returnData(weatherBitIoData.data))
   
-try {
-  let cityData = weather.find((citySearch) => 
-    citySearch.city_name.toLowerCase() === city &&
-    citySearch.lat === lat && 
-    citySearch.lon === lon);
-    // let weatherReport = cityData.data.map(day => new Forecast(day.datetime,day.weather.description))
-  
-   response.send(returnData(cityData));
+ 
+ 
 
-} catch (error) {
-   response.status(500).send('error not a city')
- }
-});
+  // } catch (error) {
+  //  response.status(404).send('error not a city -> No weather Data')
+  // }
+};
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`))
