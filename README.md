@@ -40,6 +40,7 @@ Mapping out:
 ![WRRC](img/Anthony.png)
 ![WRRC](img/david.png)
 ![WRRC](img/day3.png)
+![WRRC](img/Bryce.png)
 
 ## LAB-07
 
