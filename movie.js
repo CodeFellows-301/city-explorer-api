@@ -4,11 +4,11 @@ class Movie {
   constructor(movieData) {
     this.title = movieData.title
     this.overview = movieData.overview
-    this.average_votes = movieData.average_votes
-    this.total_votes = movieData.total_count
+    this.average_votes = movieData.vote_average
+    this.total_votes = movieData.vote_count
     this.popularity = movieData.popularity
-    this.released_on = movieData.released_on
-    this.image_url = movieData.image_url
+    this.released_on = movieData.release_date
+    this.image_url = "https://image.tmdb.org/t/p/w500"+movieData.poster_path
   }
 }
 

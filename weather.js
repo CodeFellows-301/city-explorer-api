@@ -18,8 +18,7 @@ function returnWeatherData(cityData){
 };
 
 async function weatherBitIoCall(request,response){
-  let lat = request.query.lat
-  let lon = request.query.lon
+  const {lat, lon} = request.query
   let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=68d592738bbe4b67a204ffce2d200937`
   let weatherBitIoData = await axios.get(url)
   console.log(weatherBitIoData.data)
