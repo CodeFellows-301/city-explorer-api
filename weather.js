@@ -1,4 +1,5 @@
 const axios = require('axios')
+let cache = require('./cache')
 
 
 class Forecast {
@@ -20,13 +21,22 @@ function returnWeatherData(cityData){
 async function weatherBitIoCall(request,response){
   const lat = request.query.lat
   const lon = request.query.lon
-  const key = {lat, lon}
-
-  let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=68d592738bbe4b67a204ffce2d200937`
-  let weatherBitIoData = await axios.get(url)
-
-  if(key && (date.now() - key.timestamp < 50000))
-  response.send(returnWeatherData(weatherBitIoData.data))
+  const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`
+  let citySearch = 'weather-' + lat + lon
+ 
+  if(cache.weather[citySearch] && (Date.now() - cache.weather[citySearch].time < 50000)){
+   response.send(cache.weather[citySearch]);
+    
+  } else {
+    const weatherBitIoData = await axios.get(url).then(response => returnWeatherData(response.data))
+    let weatherCache = {
+      data: weatherBitIoData,
+      time: Date.now()
+    }
+    cache.weather[citySearch] = weatherCache
+    response.status(200).send(weatherCache);
+  
+    };
 };
 
 module.exports={weatherBitIoCall}

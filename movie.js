@@ -1,4 +1,6 @@
 const axios = require('axios')
+let cache = require('./cache')
+
 
 class Movie {
   constructor(movieData) {
@@ -22,9 +24,20 @@ function returnMovie(movieInfo){
 async function movieDB(request,response){
   let search = request.query.searchQuery
   let movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${search}`
-  let movieData = await axios.get(movieUrl);
-  response.status(200).send(returnMovie(movieData));
+  
+  if(cache.movie[search] && (Date.now() - cache.movie[search].time < 604800000)){
+    response.send(cache.movie[search])
+  } else {
+    let movieData = await axios.get(movieUrl).then(response => returnMovie(response))
+    let movieCache = {
+      data: movieData,
+      time: Date.now()
+    }
+    cache.movie[search] = movieCache
+    response.send(movieCache);
+  }
 
+  
 }
 
 module.exports={movieDB}
